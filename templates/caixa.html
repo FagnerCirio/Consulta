@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Movimentação de Caixa</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Movimentação de Caixa</h1>
+        <nav>
+            <a href="/">Início</a>
+            <a href="/agendar">Agendar Consulta</a>
+            <a href="/caixa">Caixa</a>
+            <a href="/listar">Relatórios</a>
+            <a href="/receita">Receita</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Adicionar Movimentação</h2>
+            <form method="post" action="/caixa">
+                <label for="tipo">Tipo:</label>
+                <select name="tipo" id="tipo" required>
+                    <option value="entrada">Entrada</option>
+                    <option value="saída">Saída</option>
+                </select>
+
+                <label for="descricao">Descrição:</label>
+                <input type="text" name="descricao" id="descricao" required>
+
+                <label for="valor">Valor (R$):</label>
+                <input type="number" step="0.01" name="valor" id="valor" required>
+
+                <button type="submit">Salvar</button>
+            </form>
+        </section>
+
+        <section>
+            <h2 class="hidden">Movimentações Registradas</h2>
+            {% if caixa %}
+            <table class="tabela hidden">
+                <thead>
+                    <tr>
+                        <th class="hidden">ID</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Valor (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in caixa %}
+                    <tr>
+                        <td class="hidden">{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ "%.2f"|format(item[3]) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <p class="hidden">Não há registros de movimentação no caixa.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

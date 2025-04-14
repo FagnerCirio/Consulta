@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda de Consultas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Agenda de Consultas</h1>
+        <nav>
+            <a href="/">Início</a>
+            <a href="/agendar">Agendar Consulta</a>
+            <a href="/caixa">Fluxo de Caixa</a>
+            <a href="/receita">Receita</a>
+        </nav>
+    </header>
+
+    <main>
+        {% if agendamentos %}
+        <table>
+            <thead>
+                <tr>
+                    
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agendamento in agendamentos %}
+                <tr>
+                   
+                    <td>{{ agendamento[1] }}</td>
+                    <td>{{ agendamento[2] }}</td>
+                    <td>{{ agendamento[3] }}</td>
+                    <td>{{ agendamento[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>Nenhuma consulta agendada ainda.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

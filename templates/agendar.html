@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar Consulta</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function mostrarValor() {
+            const especialidade = document.getElementById("especialidade").value;
+            const valores = {
+                "Nutricionista": 100.0,
+                "Fisioterapia": 120.0,
+                "Psicólogo": 150.0
+            };
+            const valor = valores[especialidade] || 0;
+            document.getElementById("valorConsulta").textContent = "Valor: R$ " + valor.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Agendar Consulta</h1>
+        <nav>
+            <a href="/">Início</a>
+        </nav>
+    </header>
+    <main>
+        <form method="post" action="/agendar">
+            <label>Nome:</label>
+            <input type="text" name="nome" required>
+
+            <label>Especialidade:</label>
+            <select name="especialidade" id="especialidade" onchange="mostrarValor()" required>
+                <option value="">Selecione</option>
+                <option value="Nutricionista">Nutricionista</option>
+                <option value="Fisioterapia">Fisioterapia</option>
+                <option value="Psicólogo">Psicólogo</option>
+            </select>
+
+            <p id="valorConsulta">Valor: R$ 0.00</p>
+
+            <label>Data:</label>
+            <input type="date" name="data" required>
+
+            <label>Horário:</label>
+            <input type="time" name="horario" required>
+
+            <button type="submit">Agendar</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Receita - Entradas e Saídas</h2>
+
+{% if caixa %}
+<table class="tabela">
+    <thead>
+        <tr>
+                        <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Valor (R$)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in caixa %}
+        <tr>
+                        <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ "%.2f"|format(item[3]) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Resumo Financeiro</h3>
+<ul>
+    <li><strong>Total de Entradas:</strong> R$ {{ "%.2f"|format(total_entrada) }}</li>
+    <li><strong>Total de Saídas:</strong> R$ {{ "%.2f"|format(total_saida) }}</li>
+    <li><strong>Saldo Final:</strong> R$ {{ "%.2f"|format(saldo_final) }}</li>
+</ul>
+
+{% else %}
+    <p>Não há registros de entrada ou saída.</p>
+{% endif %}
+{% endblock %}

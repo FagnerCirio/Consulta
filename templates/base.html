@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica Saúde+</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Clínica Saúde+</h1>
+        <nav>
+            <a href="/">Início</a>
+            <a href="/agendar">Agendar Consulta</a>
+            <a href="/receita">Receita</a>
+            <a href="/listar">Relatórios</a>
+           
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Clínica Saúde+</p>
+    </footer>
+</body>
+</html>
